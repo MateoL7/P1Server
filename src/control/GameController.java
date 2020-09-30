@@ -39,11 +39,11 @@ public class GameController implements OnMessageListener, OnConnectionListener{
 
 
 	@Override
-	public void onConnection(String username) {
+	public void onConnection() {
 		Platform.runLater(
 
 				()->{
-					view.getMessagesArea().appendText("<<< "+ username +" se ha conectado >>>\n");
+					view.getMessagesArea().appendText("<<< Un nuevo usuario se ha conectado >>>\n");
 				}
 
 				);
@@ -74,8 +74,8 @@ public class GameController implements OnMessageListener, OnConnectionListener{
 			}
 			break;
 		case "ConnectionPossible":
-			boolean missingPlayer = connection.gotSpace();
-			if(!missingPlayer) {
+			boolean missingPlayers = connection.gotSpace();
+			if(!missingPlayers) {
 				GameStatus gs = new GameStatus("Ready");
 				String status = gson.toJson(gs);
 				connection.startGame(status);

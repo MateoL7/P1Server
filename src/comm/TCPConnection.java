@@ -73,7 +73,7 @@ public class TCPConnection extends Thread {
 	}
 
 	public interface OnConnectionListener{
-		public void onConnection(String id);
+		public void onConnection();
 	}
 
 	public void setMessageListener(OnMessageListener messageListener) {
@@ -101,7 +101,7 @@ public class TCPConnection extends Thread {
 		int index = salaDeEspera.indexOf(s);
 		salaDeEspera.remove(index);
 		sessions.add(s);
-		connectionListener.onConnection(s.getUsername());
+		connectionListener.onConnection();
 	}
 	
 	public boolean gotSpace() {
